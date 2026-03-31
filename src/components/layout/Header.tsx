@@ -66,7 +66,7 @@ export default function Header({ locale, dict }: HeaderProps) {
             {/* Logo */}
             <Link
               href={`/${locale}`}
-              className="font-heading text-2xl tracking-[0.15em] uppercase text-[var(--color-text)] hover:opacity-70 transition-opacity"
+              className="font-heading text-2xl tracking-[0.15em] uppercase text-white hover:opacity-70 transition-opacity"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               Shika
@@ -80,8 +80,8 @@ export default function Header({ locale, dict }: HeaderProps) {
                   href={link.href}
                   className={`relative text-sm tracking-[0.1em] uppercase transition-colors duration-300 ${
                     isActive(link.href)
-                      ? "text-[var(--color-text)]"
-                      : "text-[var(--color-text-light)] hover:text-[var(--color-text)]"
+                      ? "text-white"
+                      : "text-white/70 hover:text-white"
                   }`}
                   style={{ fontFamily: "var(--font-body)" }}
                 >
@@ -102,9 +102,9 @@ export default function Header({ locale, dict }: HeaderProps) {
                 className="relative w-8 h-8 flex items-center justify-center z-50"
                 aria-label="Toggle menu"
               >
-                <span className={`block absolute w-6 h-[1.5px] bg-[var(--color-text)] transition-all duration-300 ${menuOpen ? "rotate-45" : "-translate-y-2"}`} />
-                <span className={`block absolute w-6 h-[1.5px] bg-[var(--color-text)] transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
-                <span className={`block absolute w-6 h-[1.5px] bg-[var(--color-text)] transition-all duration-300 ${menuOpen ? "-rotate-45" : "translate-y-2"}`} />
+                <span className={`block absolute w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? "rotate-45" : "-translate-y-2"}`} />
+                <span className={`block absolute w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
+                <span className={`block absolute w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? "-rotate-45" : "translate-y-2"}`} />
               </button>
             </div>
           </div>
