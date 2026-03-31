@@ -57,8 +57,8 @@ export default function Header({ locale, dict }: HeaderProps) {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-[var(--color-surface)]/95 backdrop-blur-md shadow-sm"
-            : "bg-transparent"
+            ? "bg-blue-600/95 backdrop-blur-md shadow-sm"
+            : "bg-blue-600"
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
