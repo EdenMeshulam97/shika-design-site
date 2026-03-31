@@ -1,0 +1,204 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "process": "Our Process",
+    "projects": "Projects",
+    "contact": "Contact",
+    "settings": "Settings"
+  },
+  "hero": {
+    "title": "Crafting Spaces That Tell Your Story",
+    "subtitle": "Boutique interior design studio creating timeless, functional spaces that reflect your unique vision.",
+    "cta": "View Our Work",
+    "ctaSecondary": "Get in Touch"
+  },
+  "about": {
+    "pageTitle": "About Us",
+    "studioTitle": "Our Studio",
+    "studioDescription": "Shika is a boutique interior design studio dedicated to creating spaces that are both beautiful and deeply personal. Founded with a passion for thoughtful design, we believe every space has a story waiting to be told.",
+    "studioDescription2": "Our approach blends contemporary aesthetics with timeless elegance, creating environments that feel both fresh and enduring. We work closely with each client to understand their lifestyle, preferences, and aspirations, transforming these insights into spaces that truly feel like home.",
+    "philosophyTitle": "Our Philosophy",
+    "philosophyDescription": "We believe that great design goes beyond aesthetics. It's about creating spaces that enhance daily life, evoke emotion, and stand the test of time. Every material, color, and texture is chosen with intention.",
+    "founderTitle": "Meet the Founder",
+    "founderName": "Sarah Cohen",
+    "founderRole": "Founder & Lead Designer",
+    "founderBio": "With over a decade of experience in interior design, Sarah founded Shika with a vision to create spaces that seamlessly blend form and function. Her work has been featured in leading design publications, and she brings a unique perspective shaped by travels across Europe and the Middle East.",
+    "values": {
+      "title": "Our Values",
+      "craftsmanship": "Craftsmanship",
+      "craftsmanshipDesc": "We believe in the power of expert craftsmanship and attention to detail in every element of design.",
+      "sustainability": "Sustainability",
+      "sustainabilityDesc": "We prioritize eco-friendly materials and sustainable practices in all our projects.",
+      "collaboration": "Collaboration",
+      "collaborationDesc": "We work hand-in-hand with our clients, architects, and artisans to bring each vision to life.",
+      "innovation": "Innovation",
+      "innovationDesc": "We stay at the forefront of design trends while maintaining timeless sensibility."
+    }
+  },
+  "process": {
+    "pageTitle": "Our Process",
+    "subtitle": "From concept to completion, we guide you through every step of your design journey.",
+    "steps": {
+      "consultation": {
+        "title": "Consultation",
+        "number": "01",
+        "description": "We begin with an in-depth conversation to understand your vision, lifestyle, and aspirations. This is where we listen, learn, and start to envision the possibilities for your space.",
+        "details": ["Understanding your lifestyle and needs", "Space assessment and measurements", "Budget discussion and timeline planning", "Initial mood and inspiration exploration"]
+      },
+      "concept": {
+        "title": "Concept Development",
+        "number": "02",
+        "description": "Our team develops a comprehensive design concept that captures your vision. We present mood boards, material palettes, and spatial layouts that bring the concept to life.",
+        "details": ["Mood boards and visual concepts", "Material and color palette selection", "Space planning and layouts", "3D visualizations and renderings"]
+      },
+      "design": {
+        "title": "Detailed Design",
+        "number": "03",
+        "description": "We refine every detail — from furniture selections to lighting plans, custom millwork to fabric choices. Each element is carefully curated to create a cohesive, harmonious space.",
+        "details": ["Furniture and fixture selection", "Custom millwork and built-in designs", "Lighting and electrical planning", "Detailed specifications and drawings"]
+      },
+      "execution": {
+        "title": "Execution & Styling",
+        "number": "04",
+        "description": "We oversee the entire implementation process, coordinating with contractors and artisans to ensure every detail is executed to perfection. The final styling brings your space to life.",
+        "details": ["Project management and coordination", "Quality control and site supervision", "Furniture and art installation", "Final styling and accessorizing"]
+      }
+    }
+  },
+  "projects": {
+    "pageTitle": "Our Projects",
+    "subtitle": "A curated selection of our work across residential and commercial spaces.",
+    "viewProject": "View Project",
+    "allProjects": "All",
+    "residential": "Residential",
+    "commercial": "Commercial",
+    "hospitality": "Hospitality",
+    "categories": {
+      "all": "All",
+      "residential": "Residential",
+      "commercial": "Commercial",
+      "hospitality": "Hospitality"
+    }
+  },
+  "projectDetail": {
+    "overview": "Project Overview",
+    "scope": "Scope",
+    "location": "Location",
+    "area": "Area",
+    "year": "Year",
+    "duration": "Duration",
+    "gallery": "Gallery",
+    "nextProject": "Next Project",
+    "backToProjects": "Back to Projects"
+  },
+  "contact": {
+    "pageTitle": "Get in Touch",
+    "subtitle": "Ready to transform your space? We'd love to hear about your project.",
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "projectType": "Project Type",
+      "message": "Tell us about your project",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Thank you! We'll be in touch soon.",
+      "selectType": "Select project type",
+      "types": {
+        "residential": "Residential",
+        "commercial": "Commercial",
+        "hospitality": "Hospitality",
+        "consultation": "Consultation Only"
+      }
+    },
+    "info": {
+      "title": "Contact Information",
+      "visitTitle": "Visit Our Studio",
+      "followTitle": "Follow Us"
+    }
+  },
+  "footer": {
+    "description": "Boutique interior design studio creating timeless, functional spaces.",
+    "quickLinks": "Quick Links",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved.",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "pinterest": "Pinterest"
+  },
+  "settings": {
+    "pageTitle": "Theme Settings",
+    "subtitle": "Customize every aspect of the website's look and feel.",
+    "tabs": {
+      "brand": "Brand",
+      "colors": "Colors",
+      "typography": "Typography",
+      "layout": "Layout",
+      "contact": "Contact",
+      "animation": "Animation"
+    },
+    "brand": "Brand Identity",
+    "brandName": "Studio Name",
+    "brandTagline": "Tagline",
+    "colors": "Color Palette",
+    "colorsDesc": "Define the color palette that shapes your brand's visual identity.",
+    "primary": "Primary",
+    "primaryLight": "Primary Light",
+    "primaryDark": "Primary Dark",
+    "secondary": "Secondary",
+    "accent": "Accent",
+    "background": "Background",
+    "backgroundAlt": "Background Alt",
+    "surface": "Surface",
+    "text": "Text",
+    "textLight": "Text Light",
+    "textMuted": "Text Muted",
+    "border": "Border",
+    "borderLight": "Border Light",
+    "typography": "Typography",
+    "typographyDesc": "Choose the typefaces that express your brand voice.",
+    "headingFont": "Heading Font Family",
+    "bodyFont": "Body Font Family",
+    "fontSizes": "Font Sizes",
+    "heroSize": "Hero",
+    "h1Size": "Heading 1",
+    "h2Size": "Heading 2",
+    "h3Size": "Heading 3",
+    "h4Size": "Heading 4",
+    "bodySize": "Body",
+    "smallSize": "Small",
+    "xsSize": "Extra Small",
+    "layout": "Layout & Spacing",
+    "layoutDesc": "Control the structural dimensions of the site.",
+    "maxWidth": "Max Content Width",
+    "headerHeight": "Header Height",
+    "borderRadius": "Border Radius",
+    "sectionPadding": "Section Padding",
+    "animation": "Animation",
+    "animationDesc": "Fine-tune the motion and transitions.",
+    "animDuration": "Duration",
+    "animEasing": "Easing Curve",
+    "animStagger": "Stagger Delay",
+    "contact": "Contact Information",
+    "contactDesc": "Update your studio's contact details and social links.",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "address": "Studio Address",
+    "instagram": "Instagram URL",
+    "facebook": "Facebook URL",
+    "pinterest": "Pinterest URL",
+    "linkedin": "LinkedIn URL",
+    "save": "Save Changes",
+    "reset": "Reset to Default",
+    "saved": "Settings saved successfully!",
+    "unsavedChanges": "You have unsaved changes",
+    "previewTitle": "Live Preview"
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "readMore": "Read More",
+    "viewAll": "View All",
+    "loading": "Loading..."
+  }
+}
