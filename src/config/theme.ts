@@ -155,7 +155,8 @@ export function saveTheme(theme: Partial<ThemeConfig>): void {
   }
 }
 
-function deepMerge<T extends Record<string, unknown>>(target: T, source: Partial<T>): T {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function deepMerge(target: any, source: any): any {
   const result = { ...target };
   for (const key in source) {
     if (
@@ -163,12 +164,9 @@ function deepMerge<T extends Record<string, unknown>>(target: T, source: Partial
       typeof source[key] === "object" &&
       !Array.isArray(source[key])
     ) {
-      result[key] = deepMerge(
-        (target[key] as Record<string, unknown>) || {},
-        source[key] as Record<string, unknown>
-      ) as T[Extract<keyof T, string>];
+      result[key] = deepMerge(target[key] || {}, source[key]);
     } else if (source[key] !== undefined) {
-      result[key] = source[key] as T[Extract<keyof T, string>];
+      result[key] = source[key];
     }
   }
   return result;
