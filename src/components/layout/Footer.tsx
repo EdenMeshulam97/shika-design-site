@@ -24,7 +24,7 @@ export default function Footer({ locale, dict }: FooterProps) {
 
   return (
     <footer className="bg-[var(--color-primary)] text-white/80">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-16 md:py-20">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10 pt-16 md:pt-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
           {/* Brand */}
           <div>
@@ -111,7 +111,7 @@ export default function Footer({ locale, dict }: FooterProps) {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="mt-12 py-3 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-white/50">
             &copy; {year} Shika Design. {dict.footer.rights}
           </p>
