@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { useReducedMotion } from "@/lib/a11y/useReducedMotion";
 
 interface FadeInProps {
   children: ReactNode;
@@ -9,6 +10,8 @@ interface FadeInProps {
   direction?: "up" | "down" | "left" | "right" | "none";
   className?: string;
   once?: boolean;
+  /** For content at the top of the page: fade in with CSS at first paint instead of waiting for JavaScript */
+  immediate?: boolean;
 }
 
 export default function FadeIn({
@@ -18,11 +21,14 @@ export default function FadeIn({
   direction = "up",
   className = "",
   once = true,
+  immediate = false,
 }: FadeInProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
+    if (immediate) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -37,7 +43,7 @@ export default function FadeIn({
 
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
-  }, [once]);
+  }, [once, immediate]);
 
   const directionStyles = {
     up: "translate3d(0, 30px, 0)",
@@ -46,6 +52,33 @@ export default function FadeIn({
     right: "translate3d(-30px, 0, 0)",
     none: "translate3d(0, 0, 0)",
   };
+
+  if (immediate) {
+    // Pure CSS animation (globals.css .fade-in-immediate); reduced motion and "Stop animations" turn it off there
+    return (
+      <div
+        className={`fade-in-immediate ${className}`}
+        style={
+          {
+            "--fade-from": directionStyles[direction],
+            "--fade-delay": `${delay}s`,
+            "--fade-duration": `${duration}s`,
+          } as CSSProperties
+        }
+      >
+        {children}
+      </div>
+    );
+  }
+
+  // With reduced motion, content is shown in place with no fade or slide
+  if (reducedMotion) {
+    return (
+      <div ref={ref} className={className}>
+        {children}
+      </div>
+    );
+  }
 
   return (
     <div

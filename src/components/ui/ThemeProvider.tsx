@@ -18,6 +18,18 @@ const ThemeContext = createContext<ThemeContextType>({
   mounted: false,
 });
 
+// Fonts self-hosted by next/font in the locale layout. Theme settings keep the plain family names
+// (so the font picker still recognizes them); here they're pointed at the bundled files.
+const bundledFonts: Record<string, string> = {
+  "Cormorant Garamond": "var(--font-cormorant)",
+  Inter: "var(--font-inter)",
+};
+
+function withBundledFont(stack: string): string {
+  const first = stack.split(",")[0].trim().replace(/^['"]|['"]$/g, "");
+  return bundledFonts[first] ? `${bundledFonts[first]}, ${stack}` : stack;
+}
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const themeData = useTheme();
 
@@ -38,8 +50,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
           --color-text-muted: ${themeData.theme.colors.textMuted};
           --color-border: ${themeData.theme.colors.border};
           --color-border-light: ${themeData.theme.colors.borderLight};
-          --font-heading: ${themeData.theme.typography.fontFamily.heading};
-          --font-body: ${themeData.theme.typography.fontFamily.body};
+          --font-heading: ${withBundledFont(themeData.theme.typography.fontFamily.heading)};
+          --font-body: ${withBundledFont(themeData.theme.typography.fontFamily.body)};
         }
       `}</style>
       {children}

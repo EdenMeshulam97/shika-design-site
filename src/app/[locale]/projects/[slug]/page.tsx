@@ -5,6 +5,7 @@ import { getDictionary } from "@/lib/i18n/dictionaries";
 import type { Locale } from "@/lib/i18n/config";
 import { projects, getProjectBySlug } from "@/lib/data/projects";
 import imageSizes from "@/lib/data/image-sizes.json";
+import placeholders from "@/lib/data/image-placeholders.json";
 import FadeIn from "@/components/animations/FadeIn";
 
 interface PageProps {
@@ -42,22 +43,24 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           src={project.images[0]}
           alt={project.title[locale as Locale]}
           fill
+          placeholder="blur"
+          blurDataURL={placeholders[project.images[0] as keyof typeof placeholders]}
           className={`object-cover ${heroIsLandscape ? "pan-x-mobile" : ""}`}
-          priority
+          preload
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+        <div data-overlay aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
           <div className="container-custom">
-            <FadeIn>
+            <FadeIn immediate>
               <p
                 className="text-white/60 text-xs tracking-[0.2em] uppercase mb-3"
               >
                 {dict.projects.categories[project.category]}
               </p>
             </FadeIn>
-            <FadeIn delay={0.1}>
+            <FadeIn immediate delay={0.1}>
               <h1
                 className="text-white mb-2"
                 style={{
@@ -70,7 +73,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               </h1>
             </FadeIn>
             {heroMeta && (
-              <FadeIn delay={0.2}>
+              <FadeIn immediate delay={0.2}>
                 <p className="text-white/70 text-sm">{heroMeta}</p>
               </FadeIn>
             )}
@@ -170,6 +173,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                       alt={`${project.title[locale as Locale]} - ${i + 2}`}
                       width={width}
                       height={height}
+                      placeholder="blur"
+                      blurDataURL={placeholders[img as keyof typeof placeholders]}
                       className="w-full h-auto"
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
@@ -188,10 +193,12 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             src={nextProject.thumbnail}
             alt={nextProject.title[locale as Locale]}
             fill
+            placeholder="blur"
+            blurDataURL={placeholders[nextProject.thumbnail as keyof typeof placeholders]}
             className="object-cover transition-transform duration-700 group-hover:scale-105"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-500" />
+          <div data-overlay aria-hidden="true" className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-500" />
 
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
             <p className="text-white/60 text-xs tracking-[0.2em] uppercase mb-3">
@@ -216,7 +223,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         <div className="container-custom text-center">
           <Link
             href={`/${locale}/projects`}
-            className="inline-block text-sm tracking-[0.15em] uppercase border-b border-[var(--color-accent)] pb-1 text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors"
+            className="inline-block text-sm tracking-[0.15em] uppercase border-b border-[var(--color-accent)] pb-1 text-[var(--color-text)] hover:text-[var(--color-accent-text)] transition-colors"
           >
             &larr; {dict.projectDetail.backToProjects}
           </Link>

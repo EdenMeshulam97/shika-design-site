@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -17,6 +17,12 @@ interface HeaderProps {
       projects: string;
       contact: string;
     };
+    a11y: {
+      openNavMenu: string;
+      closeNavMenu: string;
+      mainNav: string;
+      changeLanguage: string;
+    };
   };
 }
 
@@ -24,6 +30,8 @@ export default function Header({ locale, dict }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileNavRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -38,6 +46,28 @@ export default function Header({ locale, dict }: HeaderProps) {
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
+  // While the full-screen menu is open, the page behind it is out of reach for keyboard and screen readers
+  useEffect(() => {
+    if (!menuOpen) return;
+    const behind = [document.getElementById("main-content"), document.getElementById("site-footer")];
+    behind.forEach((el) => el?.setAttribute("inert", ""));
+    // The overlay is still visibility:hidden on the first frame of its fade-in, so focus once it's visible
+    const focusTimer = window.setTimeout(() => mobileNavRef.current?.querySelector("a")?.focus(), 50);
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      window.clearTimeout(focusTimer);
+      behind.forEach((el) => el?.removeAttribute("inert"));
+      document.removeEventListener("keydown", onKey);
+    };
   }, [menuOpen]);
 
   const navLinks = [
@@ -78,17 +108,18 @@ export default function Header({ locale, dict }: HeaderProps) {
                   width={230}
                   height={256}
                   className="h-9 md:h-11 w-auto"
-                  priority
+                  loading="eager"
                 />
                 Shika
               </Link>
 
               {/* Desktop Nav */}
-              <nav className="hidden lg:flex items-center gap-8">
+              <nav aria-label={dict.a11y.mainNav} className="hidden lg:flex items-center gap-8">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
+                    aria-current={isActive(link.href) ? "page" : undefined}
                     className={`relative text-sm tracking-[0.1em] uppercase transition-colors duration-300 ${
                       isActive(link.href)
                         ? "text-white"
@@ -98,7 +129,7 @@ export default function Header({ locale, dict }: HeaderProps) {
                   >
                     {link.label}
                     {isActive(link.href) && (
-                      <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-[var(--color-accent)]" />
+                      <span aria-hidden="true" className="absolute -bottom-1 left-0 w-full h-[1px] bg-[var(--color-accent)]" />
                     )}
                   </Link>
                 ))}
@@ -107,21 +138,24 @@ export default function Header({ locale, dict }: HeaderProps) {
 
             {/* End: language selector on its own at the far side */}
             <div className="hidden lg:block">
-              <LanguageSwitcher locale={locale} />
+              <LanguageSwitcher locale={locale} label={dict.a11y.changeLanguage} />
             </div>
 
             {/* Mobile Menu Button */}
             <div className="flex items-center gap-4 lg:hidden">
-              <LanguageSwitcher locale={locale} />
+              <LanguageSwitcher locale={locale} label={dict.a11y.changeLanguage} />
               <button
+                ref={menuButtonRef}
+                type="button"
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="relative w-8 h-8 flex items-center justify-center z-50"
-                aria-label="Toggle menu"
+                className="relative w-11 h-11 flex items-center justify-center z-50"
+                aria-label={menuOpen ? dict.a11y.closeNavMenu : dict.a11y.openNavMenu}
                 aria-expanded={menuOpen}
+                aria-controls="mobile-menu"
               >
-                <span className={`block absolute w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? "rotate-45" : "-translate-y-2"}`} />
-                <span className={`block absolute w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
-                <span className={`block absolute w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? "-rotate-45" : "translate-y-2"}`} />
+                <span aria-hidden="true" className={`block absolute w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? "rotate-45" : "-translate-y-2"}`} />
+                <span aria-hidden="true" className={`block absolute w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
+                <span aria-hidden="true" className={`block absolute w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? "-rotate-45" : "translate-y-2"}`} />
               </button>
             </div>
           </div>
@@ -130,16 +164,18 @@ export default function Header({ locale, dict }: HeaderProps) {
 
       {/* Mobile Menu Overlay */}
       <div
+        id="mobile-menu"
         className={`fixed inset-0 z-40 bg-[var(--color-surface)] transition-all duration-500 lg:hidden ${
           menuOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
-        <nav className="flex flex-col items-center justify-center h-full gap-8">
+        <nav ref={mobileNavRef} aria-label={dict.a11y.mainNav} className="flex flex-col items-center justify-center h-full gap-8">
           {navLinks.map((link, i) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`text-2xl tracking-[0.15em] uppercase transition-all duration-500 ${
+              aria-current={isActive(link.href) ? "page" : undefined}
+              className={`text-2xl tracking-[0.15em] uppercase transition-[opacity,transform,color] duration-500 ${
                 isActive(link.href) ? "text-[var(--color-text)]" : "text-[var(--color-text-light)]"
               }`}
               style={{

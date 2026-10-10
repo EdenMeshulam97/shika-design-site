@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
+import { useReducedMotion } from "@/lib/a11y/useReducedMotion";
 
 interface ParallaxImageProps {
   src: string;
   alt: string;
   className?: string;
   speed?: number;
-  priority?: boolean;
+  /** Load this image first (for the hero photo at the top of the page) */
+  preload?: boolean;
   objectPosition?: string;
 }
 
@@ -17,24 +19,39 @@ export default function ParallaxImage({
   alt,
   className = "",
   speed = 0.15,
-  priority = false,
+  preload = false,
   objectPosition = "center",
 }: ParallaxImageProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [offset, setOffset] = useState(0);
+  const imageRef = useRef<HTMLImageElement>(null);
+  const reducedMotion = useReducedMotion();
 
+  // Move the photo directly, at most once per frame, instead of re-rendering on every scroll event
   useEffect(() => {
-    const handleScroll = () => {
+    const image = imageRef.current;
+    if (!image) return;
+    if (reducedMotion) {
+      image.style.transform = "";
+      return;
+    }
+    let frame = 0;
+    const update = () => {
+      frame = 0;
       if (!ref.current) return;
-      const rect = ref.current.getBoundingClientRect();
-      const scrollProgress = rect.top / window.innerHeight;
-      setOffset(scrollProgress * speed * 100);
+      const scrollProgress = ref.current.getBoundingClientRect().top / window.innerHeight;
+      image.style.transform = `translateY(${scrollProgress * speed * 100}px) scale(1.1)`;
+    };
+    const handleScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [speed]);
+    update();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, [speed, reducedMotion]);
 
   return (
     <div ref={ref} className={`relative w-full h-full overflow-hidden ${className}`}>
@@ -43,9 +60,10 @@ export default function ParallaxImage({
         alt={alt}
         fill
         className="object-cover pan-x-mobile"
-        style={{ transform: `translateY(${offset}px) scale(1.1)`, objectPosition }}
+        ref={imageRef}
+        style={{ objectPosition }}
         sizes="100vw"
-        priority={priority}
+        preload={preload}
       />
     </div>
   );

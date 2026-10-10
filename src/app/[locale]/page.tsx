@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import type { Locale } from "@/lib/i18n/config";
 import { getFeaturedProjects } from "@/lib/data/projects";
+import placeholders from "@/lib/data/image-placeholders.json";
 import FadeIn from "@/components/animations/FadeIn";
 import ParallaxImage from "@/components/animations/ParallaxImage";
 
@@ -22,15 +23,15 @@ export default async function HomePage({ params }: PageProps) {
         <div className="absolute inset-0">
           <ParallaxImage
             src="/images/projects/na-project/45.jpg"
-            alt="Interior Design"
-            priority
+            alt=""
+            preload
             speed={0.1}
           />
-          <div className="absolute inset-0 bg-black/45" />
+          <div data-overlay aria-hidden="true" className="absolute inset-0 bg-black/45" />
         </div>
 
         <div className="relative z-10 text-center px-6 max-w-4xl">
-          <FadeIn delay={0.2} direction="none">
+          <FadeIn immediate delay={0.2} direction="none">
             <h1
               className="text-white mb-6"
               style={{
@@ -45,7 +46,7 @@ export default async function HomePage({ params }: PageProps) {
             </h1>
           </FadeIn>
 
-          <FadeIn delay={0.4} direction="none">
+          <FadeIn immediate delay={0.4} direction="none">
             <p
               className="text-white/80 max-w-2xl mx-auto mb-10"
               style={{
@@ -59,7 +60,7 @@ export default async function HomePage({ params }: PageProps) {
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.6} direction="none">
+          <FadeIn immediate delay={0.6} direction="none">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href={`/${locale}/projects`}
@@ -119,7 +120,7 @@ export default async function HomePage({ params }: PageProps) {
             <FadeIn delay={0.3}>
               <Link
                 href={`/${locale}/about`}
-                className="inline-block mt-8 text-sm tracking-[0.15em] uppercase border-b border-[var(--color-accent)] pb-1 text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors"
+                className="inline-block mt-8 text-sm tracking-[0.15em] uppercase border-b border-[var(--color-accent)] pb-1 text-[var(--color-text)] hover:text-[var(--color-accent-text)] transition-colors"
               >
                 {dict.common.learnMore}
               </Link>
@@ -156,15 +157,17 @@ export default async function HomePage({ params }: PageProps) {
                   <div className="img-zoom relative aspect-[4/3] mb-4">
                     <Image
                       src={project.thumbnail}
+                      placeholder="blur"
+                      blurDataURL={placeholders[project.thumbnail as keyof typeof placeholders]}
                       alt={project.title[locale as Locale]}
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
+                    <div data-overlay="hover" aria-hidden="true" className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
                   </div>
                   <h3
-                    className="mb-1 group-hover:text-[var(--color-accent)] transition-colors"
+                    className="mb-1 group-hover:text-[var(--color-accent-text)] transition-colors"
                     style={{
                       fontFamily: "var(--font-heading)",
                       fontSize: "clamp(1.25rem, 2vw, 1.5rem)",
@@ -233,7 +236,7 @@ export default async function HomePage({ params }: PageProps) {
                     style={{
                       fontFamily: "var(--font-heading)",
                       fontSize: "2.5rem",
-                      color: "var(--color-accent)",
+                      color: "var(--color-accent-text)",
                       fontWeight: 300,
                     }}
                   >
@@ -264,7 +267,7 @@ export default async function HomePage({ params }: PageProps) {
             <div className="text-center mt-12">
               <Link
                 href={`/${locale}/process`}
-                className="inline-block text-sm tracking-[0.15em] uppercase border-b border-[var(--color-accent)] pb-1 text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors"
+                className="inline-block text-sm tracking-[0.15em] uppercase border-b border-[var(--color-accent)] pb-1 text-[var(--color-text)] hover:text-[var(--color-accent-text)] transition-colors"
               >
                 {dict.common.learnMore}
               </Link>
@@ -278,10 +281,10 @@ export default async function HomePage({ params }: PageProps) {
         <div className="absolute inset-0">
           <ParallaxImage
             src="/images/projects/ma-project/10.jpg"
-            alt="Contact us"
+            alt=""
             speed={0.1}
           />
-          <div className="absolute inset-0 bg-black/50" />
+          <div data-overlay aria-hidden="true" className="absolute inset-0 bg-black/50" />
         </div>
 
         <div className="relative z-10 text-center px-6">

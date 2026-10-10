@@ -15,6 +15,7 @@ interface FooterProps {
       facebook: string;
       pinterest: string;
     };
+    a11y: { statement: string; opensNewTab: string };
   };
 }
 
@@ -23,17 +24,17 @@ export default function Footer({ locale, dict }: FooterProps) {
   const contact = defaultTheme.contact;
 
   return (
-    <footer className="bg-[var(--color-primary)] text-white/80">
+    <footer id="site-footer" className="bg-[var(--color-primary)] text-white/80">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 pt-16 md:pt-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
           {/* Brand */}
           <div>
-            <h3
-              className="text-2xl tracking-[0.15em] uppercase text-white mb-4"
+            <p
+              className="text-2xl tracking-[0.15em] uppercase text-white mb-4 font-normal leading-tight"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               Shika
-            </h3>
+            </p>
             <p className="text-sm leading-relaxed text-white/70 max-w-xs">
               {dict.footer.description}
             </p>
@@ -41,15 +42,16 @@ export default function Footer({ locale, dict }: FooterProps) {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-xs tracking-[0.2em] uppercase text-[var(--color-accent)] mb-6">
+            <h2 id="footer-quick-links" className="text-xs tracking-[0.2em] uppercase text-[var(--color-accent)] mb-6">
               {dict.footer.quickLinks}
-            </h4>
-            <nav className="flex flex-col gap-3">
+            </h2>
+            <nav aria-labelledby="footer-quick-links" className="flex flex-col gap-3">
               {[
                 { href: `/${locale}/about`, label: dict.nav.about },
                 { href: `/${locale}/process`, label: dict.nav.process },
                 { href: `/${locale}/projects`, label: dict.nav.projects },
                 { href: `/${locale}/contact`, label: dict.nav.contact },
+                { href: `/${locale}/accessibility`, label: dict.a11y.statement },
               ].map((link) => (
                 <Link
                   key={link.href}
@@ -64,9 +66,9 @@ export default function Footer({ locale, dict }: FooterProps) {
 
           {/* Social & Contact */}
           <div>
-            <h4 className="text-xs tracking-[0.2em] uppercase text-[var(--color-accent)] mb-6">
+            <h2 className="text-xs tracking-[0.2em] uppercase text-[var(--color-accent)] mb-6">
               {dict.footer.followUs}
-            </h4>
+            </h2>
             <div className="flex flex-col gap-3">
               {contact.instagram && (
                 <a
@@ -76,6 +78,7 @@ export default function Footer({ locale, dict }: FooterProps) {
                   className="text-sm text-white/70 hover:text-white transition-colors"
                 >
                   {dict.footer.instagram}
+                  <span className="sr-only"> {dict.a11y.opensNewTab}</span>
                 </a>
               )}
               {contact.facebook && (
@@ -86,6 +89,7 @@ export default function Footer({ locale, dict }: FooterProps) {
                   className="text-sm text-white/70 hover:text-white transition-colors"
                 >
                   {dict.footer.facebook}
+                  <span className="sr-only"> {dict.a11y.opensNewTab}</span>
                 </a>
               )}
               {contact.pinterest && (
@@ -96,6 +100,7 @@ export default function Footer({ locale, dict }: FooterProps) {
                   className="text-sm text-white/70 hover:text-white transition-colors"
                 >
                   {dict.footer.pinterest}
+                  <span className="sr-only"> {dict.a11y.opensNewTab}</span>
                 </a>
               )}
             </div>
@@ -112,9 +117,12 @@ export default function Footer({ locale, dict }: FooterProps) {
 
         {/* Bottom Bar */}
         <div className="mt-12 py-3 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-white/50">
+          <p className="text-xs text-white/60">
             &copy; {year} Shika Design. {dict.footer.rights}
           </p>
+          <Link href={`/${locale}/accessibility`} className="text-xs text-white/60 hover:text-white underline underline-offset-2 transition-colors">
+            {dict.a11y.statement}
+          </Link>
         </div>
       </div>
     </footer>

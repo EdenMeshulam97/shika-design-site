@@ -19,14 +19,14 @@ export default async function ProcessPage({ params }: PageProps) {
         <div className="absolute inset-0">
           <ParallaxImage
             src="/images/projects/ma-project/15.jpg"
-            alt="Our Process"
-            priority
+            alt=""
+            preload
             speed={0.1}
           />
-          <div className="absolute inset-0 bg-black/50" />
+          <div data-overlay aria-hidden="true" className="absolute inset-0 bg-black/50" />
         </div>
         <div className="relative z-10 text-center px-6">
-          <FadeIn>
+          <FadeIn immediate>
             <h1
               className="text-white mb-4"
               style={{
@@ -39,7 +39,7 @@ export default async function ProcessPage({ params }: PageProps) {
               {dict.process.pageTitle}
             </h1>
           </FadeIn>
-          <FadeIn delay={0.2}>
+          <FadeIn immediate delay={0.2}>
             <p className="text-white/80 max-w-2xl mx-auto" style={{ fontSize: "1.1rem" }}>
               {dict.process.subtitle}
             </p>
@@ -64,7 +64,7 @@ export default async function ProcessPage({ params }: PageProps) {
                   style={{
                     fontFamily: "var(--font-heading)",
                     fontSize: "4rem",
-                    color: "var(--color-accent)",
+                    color: "var(--color-accent-text)",
                     fontWeight: 300,
                     lineHeight: 1,
                   }}

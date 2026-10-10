@@ -87,7 +87,7 @@ export const defaultTheme: ThemeConfig = {
     surface: "#FFFFFF",
     text: "#2C2C2C",
     textLight: "#595959",
-    textMuted: "#767676",
+    textMuted: "#6B6B6B",
     border: "#E5E2DD",
     borderLight: "#F0EDE8",
   },

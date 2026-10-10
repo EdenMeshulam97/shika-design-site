@@ -12,3 +12,5 @@ export async function getDictionary(locale: Locale) {
   if (!locales.includes(locale)) notFound();
   return dictionaries[locale]();
 }
+
+export type Dictionary = Awaited<ReturnType<typeof getDictionary>>;

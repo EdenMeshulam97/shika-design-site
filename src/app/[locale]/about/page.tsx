@@ -29,15 +29,15 @@ export default async function AboutPage({ params }: PageProps) {
           src="/images/team/shika-duo/11.jpg"
           alt="Karoiline & Shiraz"
           fill
-          priority
+          preload
           sizes="100vw"
           className="object-cover"
           style={{ objectPosition: "20% 71%" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent md:bg-gradient-to-l md:from-black/45 md:via-black/10 md:to-transparent" />
+        <div data-overlay aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent md:bg-gradient-to-l md:from-black/45 md:via-black/10 md:to-transparent" />
         {/* Title sits on the empty side of the photo (bottom on phones, right on desktop) so it never covers them */}
         <div className="absolute inset-x-0 bottom-0 pb-10 text-center md:inset-x-auto md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:right-[10%] md:pb-0">
-          <FadeIn>
+          <FadeIn immediate>
             <h1
               className="text-white"
               style={{
@@ -166,7 +166,7 @@ export default async function AboutPage({ params }: PageProps) {
                   style={{
                     fontFamily: "var(--font-heading)",
                     fontSize: "1.25rem",
-                    color: "var(--color-accent)",
+                    color: "var(--color-accent-text)",
                   }}
                 >
                   {dict.about.founderName}

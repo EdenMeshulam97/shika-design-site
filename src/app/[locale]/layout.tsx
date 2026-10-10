@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import { locales, type Locale, getDirection } from "@/lib/i18n/config";
@@ -6,6 +7,18 @@ import { getDictionary } from "@/lib/i18n/dictionaries";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
+import AccessibilityWidget from "@/components/a11y/AccessibilityWidget";
+import { a11yBootScript } from "@/lib/a11y/settings";
+
+// Fonts are downloaded at build time and served from this site (no request to Google, no render-blocking stylesheet).
+// The variables are wired into --font-heading/--font-body in globals.css and ThemeProvider.
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  display: "swap",
+  variable: "--font-cormorant",
+});
+const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
 
 export const metadata: Metadata = {
   title: "Shika | Interior Design Studio",
@@ -32,20 +45,25 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   const dir = getDirection(locale as Locale);
 
   return (
-    <html lang={locale} dir={dir}>
+    // suppressHydrationWarning: the boot script adds the visitor's saved a11y-* classes before React hydrates
+    <html lang={locale} dir={dir} className={`${cormorant.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap"
-          rel="stylesheet"
-        />
+        <script dangerouslySetInnerHTML={{ __html: a11yBootScript }} />
       </head>
       <body>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:start-3 focus:z-[100] focus:px-5 focus:py-3 focus:bg-white focus:text-black focus:text-sm focus:font-medium focus:shadow-lg"
+        >
+          {dict.a11y.skipToContent}
+        </a>
         <ThemeProvider>
           <Header locale={locale as Locale} dict={dict} />
-          <main className="min-h-screen">{children}</main>
+          <main id="main-content" tabIndex={-1} className="min-h-screen">
+            {children}
+          </main>
           <Footer locale={locale as Locale} dict={dict} />
+          <AccessibilityWidget locale={locale as Locale} dict={dict.a11y} />
         </ThemeProvider>
       </body>
     </html>
