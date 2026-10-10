@@ -42,7 +42,7 @@ export default function ParallaxImage({
         src={src}
         alt={alt}
         fill
-        className="object-cover"
+        className="object-cover pan-x-mobile"
         style={{ transform: `translateY(${offset}px) scale(1.1)`, objectPosition }}
         sizes="100vw"
         priority={priority}

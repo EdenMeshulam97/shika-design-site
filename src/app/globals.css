@@ -140,6 +140,23 @@
     transform: scale(1.05);
   }
 
+  /* On phones, landscape photos in tall frames slowly pan side to side so the whole photo is seen.
+     The animation overrides any inline object-position; set --pan-y to keep a vertical focal point. */
+  @keyframes pan-x {
+    from {
+      object-position: 0% var(--pan-y, 50%);
+    }
+    to {
+      object-position: 100% var(--pan-y, 50%);
+    }
+  }
+
+  @media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
+    .pan-x-mobile {
+      animation: pan-x 20s ease-in-out infinite alternate;
+    }
+  }
+
   /* Separator line */
   .separator {
     width: 60px;

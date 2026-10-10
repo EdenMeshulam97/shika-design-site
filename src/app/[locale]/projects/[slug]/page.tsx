@@ -27,6 +27,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
   if (!project) notFound();
 
+  const [heroWidth, heroHeight] = imageSizes[project.images[0] as keyof typeof imageSizes] ?? [0, 0];
+  const heroIsLandscape = heroWidth > heroHeight;
+
   const currentIndex = projects.findIndex((p) => p.slug === slug);
   const nextProject = projects[(currentIndex + 1) % projects.length];
 
@@ -38,7 +41,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           src={project.images[0]}
           alt={project.title[locale as Locale]}
           fill
-          className="object-cover"
+          className={`object-cover ${heroIsLandscape ? "pan-x-mobile" : ""}`}
           priority
           sizes="100vw"
         />
