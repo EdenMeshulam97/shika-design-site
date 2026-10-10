@@ -157,14 +157,14 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
           {/* Masonry columns so portrait and landscape photos keep their proportions */}
           <div className="columns-1 md:columns-2 gap-4 md:gap-6">
-            {project.images.map((img, i) => {
+            {project.images.slice(1).map((img, i) => {
               const [width, height] = imageSizes[img as keyof typeof imageSizes] ?? [1200, 800];
               return (
                 <FadeIn key={img} delay={(i % 4) * 0.1} className="break-inside-avoid pb-4 md:pb-6">
                   <div className="img-zoom">
                     <Image
                       src={img}
-                      alt={`${project.title[locale as Locale]} - ${i + 1}`}
+                      alt={`${project.title[locale as Locale]} - ${i + 2}`}
                       width={width}
                       height={height}
                       className="w-full h-auto"

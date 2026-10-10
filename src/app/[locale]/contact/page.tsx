@@ -195,8 +195,12 @@ export default function ContactPage() {
                       {dict.contact.info.title}
                     </h3>
                     <div className="space-y-3">
-                      <p style={{ color: "var(--color-text)" }}>{contact.email}</p>
-                      <p style={{ color: "var(--color-text)" }}>{contact.phone}</p>
+                      <a href={`mailto:${contact.email}`} className="block text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors">
+                        {contact.email}
+                      </a>
+                      <a href={`tel:${contact.phone.replace(/[^+\d]/g, "")}`} className="block text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors">
+                        <span dir="ltr">{contact.phone}</span>
+                      </a>
                     </div>
                   </div>
 

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import LanguageSwitcher from "./LanguageSwitcher";
 import type { Locale } from "@/lib/i18n/config";
@@ -63,36 +64,51 @@ export default function Header({ locale, dict }: HeaderProps) {
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <Link
-              href={`/${locale}`}
-              className="font-heading text-2xl tracking-[0.15em] uppercase text-white hover:opacity-70 transition-opacity"
-              style={{ fontFamily: "var(--font-heading)" }}
-            >
-              Shika
-            </Link>
+            {/* Start: logo + name, with the tabs right next to them */}
+            <div className="flex items-center gap-10 xl:gap-12">
+              {/* Logo */}
+              <Link
+                href={`/${locale}`}
+                className="flex items-center gap-3 font-heading text-2xl tracking-[0.15em] uppercase text-white hover:opacity-70 transition-opacity"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
+                <Image
+                  src="/images/brand/logo-white.png"
+                  alt=""
+                  width={230}
+                  height={256}
+                  className="h-9 md:h-11 w-auto"
+                  priority
+                />
+                Shika
+              </Link>
 
-            {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`relative text-sm tracking-[0.1em] uppercase transition-colors duration-300 ${
-                    isActive(link.href)
-                      ? "text-white"
-                      : "text-white/65 hover:text-white"
-                  }`}
-                  style={{ fontFamily: "var(--font-body)" }}
-                >
-                  {link.label}
-                  {isActive(link.href) && (
-                    <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-[var(--color-accent)]" />
-                  )}
-                </Link>
-              ))}
+              {/* Desktop Nav */}
+              <nav className="hidden lg:flex items-center gap-8">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`relative text-sm tracking-[0.1em] uppercase transition-colors duration-300 ${
+                      isActive(link.href)
+                        ? "text-white"
+                        : "text-white/65 hover:text-white"
+                    }`}
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
+                    {link.label}
+                    {isActive(link.href) && (
+                      <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-[var(--color-accent)]" />
+                    )}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+
+            {/* End: language selector on its own at the far side */}
+            <div className="hidden lg:block">
               <LanguageSwitcher locale={locale} />
-            </nav>
+            </div>
 
             {/* Mobile Menu Button */}
             <div className="flex items-center gap-4 lg:hidden">

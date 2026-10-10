@@ -100,8 +100,12 @@ export default function Footer({ locale, dict }: FooterProps) {
               )}
             </div>
             <div className="mt-6 text-sm text-white/60">
-              <p>{contact.email}</p>
-              <p className="mt-1">{contact.phone}</p>
+              <a href={`mailto:${contact.email}`} className="block hover:text-white transition-colors">
+                {contact.email}
+              </a>
+              <a href={`tel:${contact.phone.replace(/[^+\d]/g, "")}`} className="block mt-1 hover:text-white transition-colors">
+                <span dir="ltr">{contact.phone}</span>
+              </a>
             </div>
           </div>
         </div>

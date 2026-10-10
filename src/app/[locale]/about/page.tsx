@@ -2,7 +2,6 @@ import Image from "next/image";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import type { Locale } from "@/lib/i18n/config";
 import FadeIn from "@/components/animations/FadeIn";
-import ParallaxImage from "@/components/animations/ParallaxImage";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -21,18 +20,22 @@ export default async function AboutPage({ params }: PageProps) {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <ParallaxImage
-            src="/images/team/shika-duo/11.jpg"
-            alt="About Shika"
-            priority
-            speed={0.1}
-          />
-          <div className="absolute inset-0 bg-black/40" />
-        </div>
-        <div className="relative z-10 text-center">
+      {/* Hero: the photo is pre-cropped around the duo (about-hero.jpg). The height is tied to the
+          width on desktop, and the focal point (24% 64%) keeps both of them fully in frame from phone
+          to wide screens. It starts below the fixed header (mt-20) so the header never covers their heads. */}
+      <section className="relative mt-20 h-[70vh] min-h-[420px] md:h-[min(60vw,calc(100vh-5rem))] overflow-hidden">
+        <Image
+          src="/images/team/shika-duo/about-hero.jpg"
+          alt="Karoiline & Shiraz"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+          style={{ objectPosition: "24% 64%" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent md:bg-gradient-to-l md:from-black/45 md:via-black/10 md:to-transparent" />
+        {/* Title sits on the empty side of the photo (bottom on phones, right on desktop) so it never covers them */}
+        <div className="absolute inset-x-0 bottom-0 pb-10 text-center md:inset-x-auto md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:right-[10%] md:pb-0">
           <FadeIn>
             <h1
               className="text-white"
@@ -56,7 +59,7 @@ export default async function AboutPage({ params }: PageProps) {
             <FadeIn direction="left">
               <div className="relative aspect-[4/5] img-zoom">
                 <Image
-                  src="/images/projects/ma-project/01.jpg"
+                  src="/images/team/shika-duo/06.jpg"
                   alt="Our Studio"
                   fill
                   className="object-cover"

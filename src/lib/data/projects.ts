@@ -1,3 +1,5 @@
+import imageSizes from "./image-sizes.json";
+
 export interface Project {
   slug: string;
   category: "residential" | "commercial" | "hospitality";
@@ -33,11 +35,12 @@ export interface Project {
   featured: boolean;
 }
 
-// Images live in public/images/projects/<slug>/01.jpg … NN.jpg.
+// Images live in public/images/projects/<slug>/NN.jpg (see image-sizes.json for the full list).
 // `lead` images are shown first (the first one is the hero), followed by the rest in order.
-function gallery(slug: string, count: number, lead: number[] = []): string[] {
-  const rest = Array.from({ length: count }, (_, i) => i + 1).filter((n) => !lead.includes(n));
-  return [...lead, ...rest].map((n) => `/images/projects/${slug}/${String(n).padStart(2, "0")}.jpg`);
+function gallery(slug: string, lead: number[] = []): string[] {
+  const all = Object.keys(imageSizes).filter((src) => src.startsWith(`/images/projects/${slug}/`)).sort();
+  const leading = lead.map((n) => image(slug, n));
+  return [...leading, ...all.filter((src) => !leading.includes(src))];
 }
 
 function image(slug: string, n: number): string {
@@ -65,7 +68,7 @@ export const projects: Project[] = [
       ar: "تصميم داخلي كامل، نجارة مخصصة، تصميم إضاءة، اختيار الأثاث",
     },
     thumbnail: image("na-project", 7),
-    images: gallery("na-project", 46, [45, 7, 11, 4, 8, 10]),
+    images: gallery("na-project", [45, 7, 11, 4, 8, 10]),
     featured: true,
   },
   {
@@ -88,7 +91,7 @@ export const projects: Project[] = [
       ar: "تصميم داخلي كامل، تصميم المطبخ والنجارة، تصميم إضاءة، تنسيق",
     },
     thumbnail: image("ma-project", 2),
-    images: gallery("ma-project", 53, [10, 2, 13, 4, 15, 22]),
+    images: gallery("ma-project", [10, 2, 14, 5, 15, 22]),
     featured: true,
   },
   {
@@ -111,7 +114,7 @@ export const projects: Project[] = [
       ar: "تصميم الواجهة، تخطيط المطبخ ومنطقة الخدمة، تصميم داخلي، إضاءة",
     },
     thumbnail: image("joker-burger", 5),
-    images: gallery("joker-burger", 11, [7, 5, 11, 10, 3, 8]),
+    images: gallery("joker-burger", [7, 5, 11, 10, 4, 8]),
     featured: true,
   },
   {
@@ -134,7 +137,7 @@ export const projects: Project[] = [
       ar: "مفهوم تجاري، تصميم داخلي، نجارة مخصصة، لافتات وإضاءة",
     },
     thumbnail: image("kiosk", 4),
-    images: gallery("kiosk", 14, [3, 4, 5, 9]),
+    images: gallery("kiosk", [3, 4, 5, 9]),
     featured: true,
   },
   {
@@ -157,7 +160,7 @@ export const projects: Project[] = [
       ar: "تصميم داخلي، تصميم المطبخ، اختيار الأثاث، تنسيق",
     },
     thumbnail: image("apt-100", 3),
-    images: gallery("apt-100", 7, [3, 4, 7]),
+    images: gallery("apt-100", [3, 4, 7]),
     featured: false,
   },
 ];

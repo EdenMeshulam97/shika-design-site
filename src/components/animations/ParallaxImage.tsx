@@ -9,6 +9,7 @@ interface ParallaxImageProps {
   className?: string;
   speed?: number;
   priority?: boolean;
+  objectPosition?: string;
 }
 
 export default function ParallaxImage({
@@ -17,6 +18,7 @@ export default function ParallaxImage({
   className = "",
   speed = 0.15,
   priority = false,
+  objectPosition = "center",
 }: ParallaxImageProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
@@ -41,7 +43,7 @@ export default function ParallaxImage({
         alt={alt}
         fill
         className="object-cover"
-        style={{ transform: `translateY(${offset}px) scale(1.1)` }}
+        style={{ transform: `translateY(${offset}px) scale(1.1)`, objectPosition }}
         sizes="100vw"
         priority={priority}
       />

@@ -123,12 +123,11 @@ export const defaultTheme: ThemeConfig = {
   },
 
   contact: {
-    email: "hello@shika-design.com",
-    phone: "+972-50-123-4567",
+    email: "info@shikadesign.com",
+    phone: "+972 53-621-0113",
     address: "Tel Aviv, Israel",
-    instagram: "https://instagram.com/shika.design",
-    facebook: "https://facebook.com/shika.design",
-    pinterest: "https://pinterest.com/shika.design",
+    instagram: "https://www.instagram.com/the.shika.design",
+    facebook: "https://www.facebook.com/profile.php?id=61554307178254",
   },
 };
 
