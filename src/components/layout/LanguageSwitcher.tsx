@@ -35,8 +35,9 @@ export default function LanguageSwitcher({ locale }: LanguageSwitcherProps) {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 text-sm tracking-wider uppercase text-[var(--color-text-light)] hover:text-[var(--color-text)] transition-colors"
+        className="flex items-center gap-1.5 text-sm tracking-wider uppercase text-white/65 hover:text-white transition-colors"
         aria-label="Change language"
+        aria-expanded={open}
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 21a9 9 0 100-18 9 9 0 000 18zM3.6 9h16.8M3.6 15h16.8M12 3c2.21 2.5 3.46 5.6 3.46 9s-1.25 6.5-3.46 9c-2.21-2.5-3.46-5.6-3.46-9s1.25-6.5 3.46-9z" />

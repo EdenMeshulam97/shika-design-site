@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import type { Locale } from "@/lib/i18n/config";
 import { projects, getProjectBySlug } from "@/lib/data/projects";
+import imageSizes from "@/lib/data/image-sizes.json";
 import FadeIn from "@/components/animations/FadeIn";
 
 interface PageProps {
@@ -49,7 +50,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               <p
                 className="text-white/60 text-xs tracking-[0.2em] uppercase mb-3"
               >
-                {project.category}
+                {dict.projects.categories[project.category]}
               </p>
             </FadeIn>
             <FadeIn delay={0.1}>
@@ -66,7 +67,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </FadeIn>
             <FadeIn delay={0.2}>
               <p className="text-white/70 text-sm">
-                {project.location[locale as Locale]} &mdash; {project.year}
+                {project.location[locale as Locale]}
+                {project.year && <> &mdash; {project.year}</>}
               </p>
             </FadeIn>
           </div>
@@ -113,8 +115,10 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     { label: dict.projectDetail.location, value: project.location[locale as Locale] },
                     { label: dict.projectDetail.area, value: project.area },
                     { label: dict.projectDetail.year, value: project.year },
-                    { label: dict.projectDetail.duration, value: project.duration[locale as Locale] },
-                  ].map((item) => (
+                    { label: dict.projectDetail.duration, value: project.duration?.[locale as Locale] },
+                  ]
+                    .filter((item) => item.value)
+                    .map((item) => (
                     <div key={item.label} className="pb-4 border-b border-[var(--color-border-light)]">
                       <p
                         className="text-xs tracking-[0.15em] uppercase mb-1"
@@ -151,20 +155,25 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </h2>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            {project.images.map((img, i) => (
-              <FadeIn key={i} delay={i * 0.1}>
-                <div className="img-zoom relative aspect-[3/2]">
-                  <Image
-                    src={img}
-                    alt={`${project.title[locale as Locale]} - ${i + 1}`}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-              </FadeIn>
-            ))}
+          {/* Masonry columns so portrait and landscape photos keep their proportions */}
+          <div className="columns-1 md:columns-2 gap-4 md:gap-6">
+            {project.images.map((img, i) => {
+              const [width, height] = imageSizes[img as keyof typeof imageSizes] ?? [1200, 800];
+              return (
+                <FadeIn key={img} delay={(i % 4) * 0.1} className="break-inside-avoid pb-4 md:pb-6">
+                  <div className="img-zoom">
+                    <Image
+                      src={img}
+                      alt={`${project.title[locale as Locale]} - ${i + 1}`}
+                      width={width}
+                      height={height}
+                      className="w-full h-auto"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                </FadeIn>
+              );
+            })}
           </div>
         </div>
       </section>

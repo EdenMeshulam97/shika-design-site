@@ -1,0 +1,526 @@
+{
+"/images/projects/apt-100/01.jpg": [
+1334,
+2000
+],
+"/images/projects/apt-100/02.jpg": [
+1334,
+2000
+],
+"/images/projects/apt-100/03.jpg": [
+2000,
+1334
+],
+"/images/projects/apt-100/04.jpg": [
+1334,
+2000
+],
+"/images/projects/apt-100/05.jpg": [
+1334,
+2000
+],
+"/images/projects/apt-100/06.jpg": [
+1334,
+2000
+],
+"/images/projects/apt-100/07.jpg": [
+1334,
+2000
+],
+"/images/projects/joker-burger/01.jpg": [
+1333,
+2000
+],
+"/images/projects/joker-burger/02.jpg": [
+1333,
+2000
+],
+"/images/projects/joker-burger/03.jpg": [
+1333,
+2000
+],
+"/images/projects/joker-burger/04.jpg": [
+1333,
+2000
+],
+"/images/projects/joker-burger/05.jpg": [
+2000,
+1333
+],
+"/images/projects/joker-burger/06.jpg": [
+1333,
+2000
+],
+"/images/projects/joker-burger/07.jpg": [
+2000,
+1333
+],
+"/images/projects/joker-burger/08.jpg": [
+1333,
+2000
+],
+"/images/projects/joker-burger/09.jpg": [
+1333,
+2000
+],
+"/images/projects/joker-burger/10.jpg": [
+1334,
+2000
+],
+"/images/projects/joker-burger/11.jpg": [
+2000,
+1334
+],
+"/images/projects/kiosk/01.jpg": [
+2000,
+1333
+],
+"/images/projects/kiosk/02.jpg": [
+1333,
+2000
+],
+"/images/projects/kiosk/03.jpg": [
+2000,
+1334
+],
+"/images/projects/kiosk/04.jpg": [
+2000,
+1333
+],
+"/images/projects/kiosk/05.jpg": [
+2000,
+1334
+],
+"/images/projects/kiosk/06.jpg": [
+1334,
+2000
+],
+"/images/projects/kiosk/07.jpg": [
+1333,
+2000
+],
+"/images/projects/kiosk/08.jpg": [
+1334,
+2000
+],
+"/images/projects/kiosk/09.jpg": [
+2000,
+1334
+],
+"/images/projects/kiosk/10.jpg": [
+1333,
+2000
+],
+"/images/projects/kiosk/11.jpg": [
+1333,
+2000
+],
+"/images/projects/kiosk/12.jpg": [
+1333,
+2000
+],
+"/images/projects/kiosk/13.jpg": [
+1333,
+2000
+],
+"/images/projects/kiosk/14.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/01.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/02.jpg": [
+2000,
+1333
+],
+"/images/projects/ma-project/03.jpg": [
+1336,
+2000
+],
+"/images/projects/ma-project/04.jpg": [
+2000,
+1335
+],
+"/images/projects/ma-project/05.jpg": [
+2000,
+1335
+],
+"/images/projects/ma-project/06.jpg": [
+2000,
+1334
+],
+"/images/projects/ma-project/07.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/08.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/09.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/10.jpg": [
+2000,
+1333
+],
+"/images/projects/ma-project/11.jpg": [
+2000,
+1333
+],
+"/images/projects/ma-project/12.jpg": [
+1335,
+2000
+],
+"/images/projects/ma-project/13.jpg": [
+2000,
+1334
+],
+"/images/projects/ma-project/14.jpg": [
+2000,
+1334
+],
+"/images/projects/ma-project/15.jpg": [
+2000,
+1333
+],
+"/images/projects/ma-project/16.jpg": [
+2000,
+1335
+],
+"/images/projects/ma-project/17.jpg": [
+1330,
+2000
+],
+"/images/projects/ma-project/18.jpg": [
+2000,
+1332
+],
+"/images/projects/ma-project/19.jpg": [
+1330,
+2000
+],
+"/images/projects/ma-project/20.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/21.jpg": [
+1328,
+2000
+],
+"/images/projects/ma-project/22.jpg": [
+2000,
+1334
+],
+"/images/projects/ma-project/23.jpg": [
+2000,
+1334
+],
+"/images/projects/ma-project/24.jpg": [
+2000,
+1334
+],
+"/images/projects/ma-project/25.jpg": [
+1334,
+2000
+],
+"/images/projects/ma-project/26.jpg": [
+1335,
+2000
+],
+"/images/projects/ma-project/27.jpg": [
+1335,
+2000
+],
+"/images/projects/ma-project/28.jpg": [
+1334,
+2000
+],
+"/images/projects/ma-project/29.jpg": [
+1334,
+2000
+],
+"/images/projects/ma-project/30.jpg": [
+1334,
+2000
+],
+"/images/projects/ma-project/31.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/32.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/33.jpg": [
+2000,
+1333
+],
+"/images/projects/ma-project/34.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/35.jpg": [
+2000,
+1333
+],
+"/images/projects/ma-project/36.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/37.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/38.jpg": [
+2000,
+1333
+],
+"/images/projects/ma-project/39.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/40.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/41.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/42.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/43.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/44.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/45.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/46.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/47.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/48.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/49.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/50.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/51.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/52.jpg": [
+1333,
+2000
+],
+"/images/projects/ma-project/53.jpg": [
+1333,
+2000
+],
+"/images/projects/na-project/01.jpg": [
+2000,
+1334
+],
+"/images/projects/na-project/02.jpg": [
+2000,
+1333
+],
+"/images/projects/na-project/03.jpg": [
+2000,
+1333
+],
+"/images/projects/na-project/04.jpg": [
+2000,
+1333
+],
+"/images/projects/na-project/05.jpg": [
+2000,
+1337
+],
+"/images/projects/na-project/06.jpg": [
+2000,
+1334
+],
+"/images/projects/na-project/07.jpg": [
+2000,
+1334
+],
+"/images/projects/na-project/08.jpg": [
+2000,
+1334
+],
+"/images/projects/na-project/09.jpg": [
+2000,
+1334
+],
+"/images/projects/na-project/10.jpg": [
+2000,
+1334
+],
+"/images/projects/na-project/11.jpg": [
+2000,
+1333
+],
+"/images/projects/na-project/12.jpg": [
+1326,
+2000
+],
+"/images/projects/na-project/13.jpg": [
+1334,
+2000
+],
+"/images/projects/na-project/14.jpg": [
+1334,
+2000
+],
+"/images/projects/na-project/15.jpg": [
+1335,
+2000
+],
+"/images/projects/na-project/16.jpg": [
+1334,
+2000
+],
+"/images/projects/na-project/17.jpg": [
+1333,
+2000
+],
+"/images/projects/na-project/18.jpg": [
+1334,
+2000
+],
+"/images/projects/na-project/19.jpg": [
+2000,
+1334
+],
+"/images/projects/na-project/20.jpg": [
+2000,
+1334
+],
+"/images/projects/na-project/21.jpg": [
+1334,
+2000
+],
+"/images/projects/na-project/22.jpg": [
+2000,
+1334
+],
+"/images/projects/na-project/23.jpg": [
+2000,
+1332
+],
+"/images/projects/na-project/24.jpg": [
+2000,
+1334
+],
+"/images/projects/na-project/25.jpg": [
+2000,
+1329
+],
+"/images/projects/na-project/26.jpg": [
+2000,
+1333
+],
+"/images/projects/na-project/27.jpg": [
+1334,
+2000
+],
+"/images/projects/na-project/28.jpg": [
+1334,
+2000
+],
+"/images/projects/na-project/29.jpg": [
+2000,
+1334
+],
+"/images/projects/na-project/30.jpg": [
+2000,
+1334
+],
+"/images/projects/na-project/31.jpg": [
+1334,
+2000
+],
+"/images/projects/na-project/32.jpg": [
+2000,
+1334
+],
+"/images/projects/na-project/33.jpg": [
+1334,
+2000
+],
+"/images/projects/na-project/34.jpg": [
+1332,
+2000
+],
+"/images/projects/na-project/35.jpg": [
+1334,
+2000
+],
+"/images/projects/na-project/36.jpg": [
+1334,
+2000
+],
+"/images/projects/na-project/37.jpg": [
+2000,
+1332
+],
+"/images/projects/na-project/38.jpg": [
+2000,
+1332
+],
+"/images/projects/na-project/39.jpg": [
+1334,
+2000
+],
+"/images/projects/na-project/40.jpg": [
+2000,
+1334
+],
+"/images/projects/na-project/41.jpg": [
+2000,
+1333
+],
+"/images/projects/na-project/42.jpg": [
+1334,
+2000
+],
+"/images/projects/na-project/43.jpg": [
+1335,
+2000
+],
+"/images/projects/na-project/44.jpg": [
+1334,
+2000
+],
+"/images/projects/na-project/45.jpg": [
+2000,
+1353
+],
+"/images/projects/na-project/46.jpg": [
+1334,
+2000
+]
+}

@@ -34,14 +34,14 @@ export default function Footer({ locale, dict }: FooterProps) {
             >
               Shika
             </h3>
-            <p className="text-sm leading-relaxed text-white/60 max-w-xs">
+            <p className="text-sm leading-relaxed text-white/70 max-w-xs">
               {dict.footer.description}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-xs tracking-[0.2em] uppercase text-white/40 mb-6">
+            <h4 className="text-xs tracking-[0.2em] uppercase text-[var(--color-accent)] mb-6">
               {dict.footer.quickLinks}
             </h4>
             <nav className="flex flex-col gap-3">
@@ -54,7 +54,7 @@ export default function Footer({ locale, dict }: FooterProps) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-white/60 hover:text-white transition-colors"
+                  className="text-sm text-white/70 hover:text-white transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -64,7 +64,7 @@ export default function Footer({ locale, dict }: FooterProps) {
 
           {/* Social & Contact */}
           <div>
-            <h4 className="text-xs tracking-[0.2em] uppercase text-white/40 mb-6">
+            <h4 className="text-xs tracking-[0.2em] uppercase text-[var(--color-accent)] mb-6">
               {dict.footer.followUs}
             </h4>
             <div className="flex flex-col gap-3">
@@ -73,7 +73,7 @@ export default function Footer({ locale, dict }: FooterProps) {
                   href={contact.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-white/60 hover:text-white transition-colors"
+                  className="text-sm text-white/70 hover:text-white transition-colors"
                 >
                   {dict.footer.instagram}
                 </a>
@@ -83,7 +83,7 @@ export default function Footer({ locale, dict }: FooterProps) {
                   href={contact.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-white/60 hover:text-white transition-colors"
+                  className="text-sm text-white/70 hover:text-white transition-colors"
                 >
                   {dict.footer.facebook}
                 </a>
@@ -93,13 +93,13 @@ export default function Footer({ locale, dict }: FooterProps) {
                   href={contact.pinterest}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-white/60 hover:text-white transition-colors"
+                  className="text-sm text-white/70 hover:text-white transition-colors"
                 >
                   {dict.footer.pinterest}
                 </a>
               )}
             </div>
-            <div className="mt-6 text-sm text-white/40">
+            <div className="mt-6 text-sm text-white/60">
               <p>{contact.email}</p>
               <p className="mt-1">{contact.phone}</p>
             </div>
@@ -108,7 +108,7 @@ export default function Footer({ locale, dict }: FooterProps) {
 
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-white/30">
+          <p className="text-xs text-white/50">
             &copy; {year} Shika Design. {dict.footer.rights}
           </p>
         </div>

@@ -35,14 +35,14 @@ export default function ParallaxImage({
   }, [speed]);
 
   return (
-    <div ref={ref} className={`overflow-hidden ${className}`}>
+    <div ref={ref} className={`relative w-full h-full overflow-hidden ${className}`}>
       <Image
         src={src}
         alt={alt}
         fill
         className="object-cover"
         style={{ transform: `translateY(${offset}px) scale(1.1)` }}
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        sizes="100vw"
         priority={priority}
       />
     </div>

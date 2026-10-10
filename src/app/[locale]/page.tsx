@@ -21,12 +21,12 @@ export default async function HomePage({ params }: PageProps) {
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <ParallaxImage
-            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1800&q=80"
+            src="/images/projects/na-project/45.jpg"
             alt="Interior Design"
             priority
             speed={0.1}
           />
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-black/45" />
         </div>
 
         <div className="relative z-10 text-center px-6 max-w-4xl">
@@ -177,7 +177,8 @@ export default async function HomePage({ params }: PageProps) {
                     className="text-sm tracking-[0.1em] uppercase"
                     style={{ color: "var(--color-text-muted)" }}
                   >
-                    {project.location[locale as Locale]} &mdash; {project.year}
+                    {project.location[locale as Locale]}
+                    {project.year && <> &mdash; {project.year}</>}
                   </p>
                 </Link>
               </FadeIn>
@@ -277,7 +278,7 @@ export default async function HomePage({ params }: PageProps) {
       <section className="relative py-24 md:py-32 overflow-hidden">
         <div className="absolute inset-0">
           <ParallaxImage
-            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1800&q=80"
+            src="/images/projects/ma-project/10.jpg"
             alt="Contact us"
             speed={0.1}
           />

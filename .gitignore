@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw Drive export (web-sized copies live in public/images)
+/google drive images/

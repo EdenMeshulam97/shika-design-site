@@ -18,12 +18,12 @@ export default async function ProcessPage({ params }: PageProps) {
       <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <ParallaxImage
-            src="https://images.unsplash.com/photo-1618219740975-d40978bb7378?w=1800&q=80"
+            src="/images/projects/ma-project/15.jpg"
             alt="Our Process"
             priority
             speed={0.1}
           />
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-black/50" />
         </div>
         <div className="relative z-10 text-center px-6">
           <FadeIn>

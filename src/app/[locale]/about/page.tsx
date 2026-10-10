@@ -25,7 +25,7 @@ export default async function AboutPage({ params }: PageProps) {
       <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <ParallaxImage
-            src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1800&q=80"
+            src="/images/team/shika-duo/11.jpg"
             alt="About Shika"
             priority
             speed={0.1}
@@ -56,7 +56,7 @@ export default async function AboutPage({ params }: PageProps) {
             <FadeIn direction="left">
               <div className="relative aspect-[4/5] img-zoom">
                 <Image
-                  src="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=800&q=80"
+                  src="/images/projects/ma-project/01.jpg"
                   alt="Our Studio"
                   fill
                   className="object-cover"
@@ -189,7 +189,7 @@ export default async function AboutPage({ params }: PageProps) {
             <FadeIn direction="right" className="order-1 lg:order-2">
               <div className="relative aspect-[3/4] img-zoom">
                 <Image
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80"
+                  src="/images/team/shika-duo/03.jpg"
                   alt={dict.about.founderName}
                   fill
                   className="object-cover"

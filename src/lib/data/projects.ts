@@ -1,14 +1,14 @@
 export interface Project {
   slug: string;
   category: "residential" | "commercial" | "hospitality";
-  year: string;
+  year?: string;
   location: {
     en: string;
     he: string;
     ar: string;
   };
-  area: string;
-  duration: {
+  area?: string;
+  duration?: {
     en: string;
     he: string;
     ar: string;
@@ -33,191 +33,131 @@ export interface Project {
   featured: boolean;
 }
 
+// Images live in public/images/projects/<slug>/01.jpg … NN.jpg.
+// `lead` images are shown first (the first one is the hero), followed by the rest in order.
+function gallery(slug: string, count: number, lead: number[] = []): string[] {
+  const rest = Array.from({ length: count }, (_, i) => i + 1).filter((n) => !lead.includes(n));
+  return [...lead, ...rest].map((n) => `/images/projects/${slug}/${String(n).padStart(2, "0")}.jpg`);
+}
+
+function image(slug: string, n: number): string {
+  return `/images/projects/${slug}/${String(n).padStart(2, "0")}.jpg`;
+}
+
 export const projects: Project[] = [
   {
-    slug: "modern-tel-aviv-penthouse",
+    slug: "na-project",
     category: "residential",
-    year: "2024",
-    location: { en: "Tel Aviv, Israel", he: "תל אביב, ישראל", ar: "تل أبيب، إسرائيل" },
-    area: "220 m²",
-    duration: { en: "8 months", he: "8 חודשים", ar: "8 أشهر" },
+    location: { en: "Lod, Israel", he: "לוד, ישראל", ar: "اللد" },
     title: {
-      en: "Modern Tel Aviv Penthouse",
-      he: "פנטהאוז מודרני בתל אביב",
-      ar: "بنتهاوس حديث في تل أبيب",
+      en: "N&A Residence",
+      he: "בית N&A",
+      ar: "منزل N&A",
     },
     description: {
-      en: "A luxurious penthouse overlooking the Mediterranean, designed with a seamless blend of contemporary minimalism and warm natural materials. Floor-to-ceiling windows flood the space with light, while custom furnishings create intimate moments throughout.",
-      he: "פנטהאוז יוקרתי עם נוף לים התיכון, מעוצב בשילוב חלק של מינימליזם עכשווי וחומרים טבעיים חמים. חלונות מהרצפה עד התקרה מציפים את החלל באור, בעוד ריהוט מותאם אישית יוצר רגעים אינטימיים.",
-      ar: "بنتهاوس فاخر يطل على البحر الأبيض المتوسط، مصمم بمزيج سلس من البساطة المعاصرة والمواد الطبيعية الدافئة.",
+      en: "A family home in Lod where light is treated as a material. Backlit onyx wraps the kitchen island and the floating media bench, bronze-glass fins divide living and dining, and a gently curved wall softens the open plan. Upstairs, the master suite opens onto a glass-walled walk-in closet and an ensuite clad in bold violet-veined marble, while the children's rooms play with rounded niches, soft pastels and warm oak. A lower-level lounge with its own kitchenette completes a home that feels both glamorous and easy to live in.",
+      he: "בית משפחתי בלוד שבו האור מטופל כחומר לכל דבר. אוניקס מואר עוטף את האי במטבח ואת ספסל המדיה הצף, פינים מזכוכית ברונזה מפרידים בין הסלון לפינת האוכל, וקיר מעוגל מרכך את החלל הפתוח. בקומה העליונה, סוויטת ההורים נפתחת לחדר ארונות עם קירות זכוכית ולחדר רחצה מחופה שיש עם עורקים סגולים דרמטיים, וחדרי הילדים משחקים עם נישות עגולות, גווני פסטל רכים ועץ אלון חם. טרקלין בקומה התחתונה עם מטבחון משלים בית שמרגיש זוהר ונוח לחיים בעת ובעונה אחת.",
+      ar: "منزل عائلي في اللد يُعامَل فيه الضوء كمادة بحد ذاتها. يلتف الأونيكس المضاء من الخلف حول جزيرة المطبخ ومقعد التلفاز العائم، وتفصل ألواح زجاجية برونزية بين الصالون وغرفة الطعام، بينما يليّن جدار منحني المساحة المفتوحة. في الطابق العلوي، يُفتح الجناح الرئيسي على غرفة ملابس بجدران زجاجية وحمام مكسو برخام ذي عروق بنفسجية جريئة، وتلعب غرف الأطفال بالكوّات الدائرية وألوان الباستيل الناعمة وخشب البلوط الدافئ. وتكمل صالة في الطابق السفلي مع مطبخ صغير منزلاً يجمع بين الفخامة وسهولة العيش.",
     },
     scope: {
-      en: "Full interior design, custom furniture, lighting design",
-      he: "עיצוב פנים מלא, ריהוט מותאם אישית, עיצוב תאורה",
-      ar: "تصميم داخلي كامل، أثاث مخصص، تصميم إضاءة",
+      en: "Full interior design, custom millwork, lighting design, furniture selection",
+      he: "עיצוב פנים מלא, נגרות בהתאמה אישית, עיצוב תאורה, בחירת ריהוט",
+      ar: "تصميم داخلي كامل، نجارة مخصصة، تصميم إضاءة، اختيار الأثاث",
     },
-    thumbnail: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
-    ],
+    thumbnail: image("na-project", 7),
+    images: gallery("na-project", 46, [45, 7, 11, 4, 8, 10]),
     featured: true,
   },
   {
-    slug: "serene-jaffa-apartment",
+    slug: "ma-project",
     category: "residential",
-    year: "2024",
-    location: { en: "Jaffa, Israel", he: "יפו, ישראל", ar: "يافا، إسرائيل" },
-    area: "140 m²",
-    duration: { en: "6 months", he: "6 חודשים", ar: "6 أشهر" },
+    location: { en: "Kafr Qasim, Israel", he: "כפר קאסם, ישראל", ar: "كفر قاسم" },
     title: {
-      en: "Serene Jaffa Apartment",
-      he: "דירה שלווה ביפו",
-      ar: "شقة هادئة في يافا",
+      en: "M&A Residence",
+      he: "בית M&A",
+      ar: "منزل M&A",
     },
     description: {
-      en: "A historic Jaffa apartment transformed into a serene modern retreat. Original stone walls meet contemporary design elements, creating a dialogue between old and new that honors the building's rich history.",
-      he: "דירה היסטורית ביפו שהפכה למפלט מודרני שליו. קירות אבן מקוריים פוגשים אלמנטים עיצוביים עכשוויים, ויוצרים דיאלוג בין ישן לחדש שמכבד את ההיסטוריה העשירה של הבניין.",
-      ar: "شقة تاريخية في يافا تحولت إلى ملاذ حديث هادئ. الجدران الحجرية الأصلية تلتقي بعناصر التصميم المعاصر.",
+      en: "A two-storey family home in Kafr Qasim designed around calm, light and restraint. Soft white walls and sheer curtains meet bouclé seating, smoked-glass tables and travertine-toned surfaces, while black track lighting and a slatted steel stair screen add crisp graphic lines. The kitchen pairs warm oak tall units with a sculptural island and a cylindrical black hood, and the dining nook is built around a glass-topped stone table. Bathrooms continue the quiet palette in stone-look porcelain, oval backlit mirrors and monolithic basins.",
+      he: "בית משפחתי דו-קומתי בכפר קאסם שתוכנן סביב שקט, אור ואיפוק. קירות לבנים רכים ווילונות שקופים פוגשים ריהוט בוקלה, שולחנות מזכוכית מעושנת ומשטחים בגווני טרוורטין, בעוד תאורת מסילה שחורה ומחיצת מדרגות מפלדה מוסיפות קווים גרפיים חדים. המטבח משלב ארונות גבוהים מעץ אלון חם עם אי פיסולי וקולט אדים גלילי שחור, ופינת האוכל נבנתה סביב שולחן אבן עם משטח זכוכית. חדרי הרחצה ממשיכים את הפלטה השקטה עם פורצלן בדמוי אבן, מראות אובליות מוארות וכיורים מונוליטיים.",
+      ar: "منزل عائلي من طابقين في كفر قاسم صُمّم حول الهدوء والضوء والبساطة. تلتقي الجدران البيضاء الناعمة والستائر الشفافة بمقاعد البوكليه والطاولات من الزجاج المدخّن والأسطح بدرجات الترافرتين، بينما تضيف الإضاءة السوداء على المسارات وحاجز الدرج من الفولاذ خطوطاً واضحة. يجمع المطبخ بين خزائن طويلة من خشب البلوط الدافئ وجزيرة منحوتة وشفّاط أسطواني أسود، وتتمحور زاوية الطعام حول طاولة حجرية بسطح زجاجي. وتواصل الحمامات اللوحة الهادئة ببورسلين يحاكي الحجر ومرايا بيضاوية مضاءة وأحواض متجانسة.",
     },
     scope: {
-      en: "Renovation, interior design, art curation",
-      he: "שיפוץ, עיצוב פנים, אוצרות אמנות",
-      ar: "تجديد، تصميم داخلي، تنسيق فني",
+      en: "Full interior design, kitchen and millwork design, lighting design, styling",
+      he: "עיצוב פנים מלא, תכנון מטבח ונגרות, עיצוב תאורה, סטיילינג",
+      ar: "تصميم داخلي كامل، تصميم المطبخ والنجارة، تصميم إضاءة، تنسيق",
     },
-    thumbnail: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=1200&q=80",
-    ],
+    thumbnail: image("ma-project", 2),
+    images: gallery("ma-project", 53, [10, 2, 13, 4, 15, 22]),
     featured: true,
   },
   {
-    slug: "boutique-hotel-lobby",
+    slug: "joker-burger",
     category: "hospitality",
-    year: "2023",
-    location: { en: "Haifa, Israel", he: "חיפה, ישראל", ar: "حيفا، إسرائيل" },
-    area: "350 m²",
-    duration: { en: "12 months", he: "12 חודשים", ar: "12 شهراً" },
+    location: { en: "Israel", he: "ישראל", ar: "إسرائيل" },
     title: {
-      en: "Boutique Hotel Lobby",
-      he: "לובי מלון בוטיק",
-      ar: "بهو فندق بوتيكي",
+      en: "Joker Burger",
+      he: "ג'וקר בורגר",
+      ar: "جوكر برغر",
     },
     description: {
-      en: "A welcoming hotel lobby that sets the tone for an unforgettable stay. Rich textures, warm lighting, and curated art pieces create an atmosphere of refined hospitality that reflects the local culture.",
-      he: "לובי מלון מזמין שקובע את הטון לשהייה בלתי נשכחת. מרקמים עשירים, תאורה חמה ופריטי אמנות אצורים יוצרים אווירה של אירוח מעודן המשקף את התרבות המקומית.",
-      ar: "بهو فندق ترحيبي يضبط نغمة إقامة لا تُنسى. الأنسجة الغنية والإضاءة الدافئة وقطع الفن المنسقة.",
+      en: "A street-side burger joint with a bold personality. A hand-painted Joker mural on the roller shutter turns the storefront into a local landmark, with bistro seating spilling onto the pavement. Inside, a compact open kitchen in brushed stainless steel is warmed by exposed brick, timber doors and long linear lights, keeping the line efficient without losing character. Even the restroom gets the treatment, with rust-toned porcelain slabs and a monolithic sink.",
+      he: "המבורגרייה רחוב עם אישיות נועזת. ציור קיר של הג'וקר על תריס הגלילה הופך את החזית לנקודת ציון שכונתית, עם ישיבת ביסטרו שנשפכת אל המדרכה. בפנים, מטבח פתוח וקומפקטי מנירוסטה מוברשת מתחמם בזכות לבני חשופות, דלתות עץ ותאורה לינארית ארוכה, כך שקו העבודה נשאר יעיל בלי לאבד אופי. גם חדר השירותים זוכה ליחס מיוחד, עם לוחות פורצלן בגוון חלודה וכיור מונוליטי.",
+      ar: "مطعم برغر على الشارع بشخصية جريئة. تحوّل جدارية الجوكر المرسومة يدوياً على الباب المعدني الواجهة إلى معلم محلي، مع جلسات بيسترو تمتد إلى الرصيف. في الداخل، يكتسب المطبخ المفتوح المدمج من الفولاذ المصقول دفئاً من الطوب المكشوف والأبواب الخشبية والإضاءة الخطية الطويلة، ليبقى خط العمل فعّالاً دون أن يفقد طابعه. وحتى دورة المياه نالت نصيبها، بألواح بورسلين بلون الصدأ وحوض متجانس.",
     },
     scope: {
-      en: "Interior design, furniture design, lighting concept",
-      he: "עיצוב פנים, עיצוב רהיטים, קונספט תאורה",
-      ar: "تصميم داخلي، تصميم أثاث، مفهوم إضاءة",
+      en: "Storefront design, kitchen and service layout, interior design, lighting",
+      he: "עיצוב חזית, תכנון מטבח ואזור שירות, עיצוב פנים, תאורה",
+      ar: "تصميم الواجهة، تخطيط المطبخ ومنطقة الخدمة، تصميم داخلي، إضاءة",
     },
-    thumbnail: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80",
-      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1200&q=80",
-      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1200&q=80",
-      "https://images.unsplash.com/photo-1564078516393-cf04bd966897?w=1200&q=80",
-    ],
+    thumbnail: image("joker-burger", 5),
+    images: gallery("joker-burger", 11, [7, 5, 11, 10, 3, 8]),
     featured: true,
   },
   {
-    slug: "minimalist-workspace",
+    slug: "kiosk",
     category: "commercial",
-    year: "2023",
-    location: { en: "Herzliya, Israel", he: "הרצליה, ישראל", ar: "هرتسليا، إسرائيل" },
-    area: "500 m²",
-    duration: { en: "10 months", he: "10 חודשים", ar: "10 أشهر" },
+    location: { en: "Israel", he: "ישראל", ar: "إسرائيل" },
     title: {
-      en: "Minimalist Tech Workspace",
-      he: "מרחב עבודה טכנולוגי מינימליסטי",
-      ar: "مساحة عمل تقنية بسيطة",
+      en: "Fnjan Kiosk",
+      he: "קיוסק פנג'אן",
+      ar: "كشك فنجان",
     },
     description: {
-      en: "A modern workspace designed for a tech startup, balancing collaborative open areas with private focus zones. Natural materials and biophilic design elements promote wellbeing and productivity.",
-      he: "מרחב עבודה מודרני שתוכנן עבור סטארט-אפ טכנולוגי, המאזן בין אזורים פתוחים לשיתוף פעולה לבין אזורי מיקוד פרטיים. חומרים טבעיים ואלמנטים עיצוביים ביופיליים מקדמים רווחה ופרודוקטיביות.",
-      ar: "مساحة عمل حديثة مصممة لشركة تقنية ناشئة، تحقق التوازن بين المناطق المفتوحة التعاونية ومناطق التركيز الخاصة.",
+      en: "A neighbourhood kiosk and coffee bar reimagined as a bright, gallery-like shop. Arched white niches frame candy, snacks and chocolates like display pieces, oak base cabinets ground the space, and a textured plaster counter bearing the Fnjan name anchors the coffee and pastry bar. Clear zones (Pastries, Drinks, Milk & More, Coffee to Go) are lettered straight onto the walls, so browsing feels effortless, while linear lighting keeps everything crisp and inviting.",
+      he: "קיוסק ובר קפה שכונתי שעוצב מחדש כחנות בהירה בתחושת גלריה. נישות לבנות מקושתות ממסגרות ממתקים, חטיפים ושוקולדים כמו פריטי תצוגה, ארונות תחתונים מעץ אלון מקרקעים את החלל, ודלפק טיח מרקמי הנושא את השם Fnjan מעגן את בר הקפה והמאפים. אזורים ברורים (מאפים, משקאות, חלב ועוד, קפה לדרך) כתובים ישירות על הקירות כך שההתמצאות טבעית, ותאורה לינארית שומרת על מראה נקי ומזמין.",
+      ar: "كشك ومقهى حيّ أُعيد تصوره كمتجر مشرق بروح المعرض. تؤطّر الكوّات البيضاء المقوّسة الحلويات والوجبات الخفيفة والشوكولاتة كقطع عرض، وتمنح الخزائن السفلية من خشب البلوط المساحة ثباتاً، بينما يرتكز ركن القهوة والمعجنات على كاونتر من الجص المحبّب يحمل اسم فنجان. كُتبت الأقسام بوضوح على الجدران (معجنات، مشروبات، حليب والمزيد، قهوة للطريق) ليصبح التجوّل سهلاً، وتحافظ الإضاءة الخطية على مظهر نظيف وجذاب.",
     },
     scope: {
-      en: "Space planning, interior design, acoustic solutions",
-      he: "תכנון מרחב, עיצוב פנים, פתרונות אקוסטיים",
-      ar: "تخطيط المساحة، تصميم داخلي، حلول صوتية",
+      en: "Retail concept, interior design, custom millwork, signage and lighting",
+      he: "קונספט קמעונאי, עיצוב פנים, נגרות בהתאמה אישית, שילוט ותאורה",
+      ar: "مفهوم تجاري، تصميم داخلي، نجارة مخصصة، لافتات وإضاءة",
     },
-    thumbnail: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80",
-      "https://images.unsplash.com/photo-1497215842964-222b430dc094?w=1200&q=80",
-      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1200&q=80",
-    ],
-    featured: false,
-  },
-  {
-    slug: "coastal-villa-caesarea",
-    category: "residential",
-    year: "2023",
-    location: { en: "Caesarea, Israel", he: "קיסריה, ישראל", ar: "قيسارية، إسرائيل" },
-    area: "380 m²",
-    duration: { en: "14 months", he: "14 חודשים", ar: "14 شهراً" },
-    title: {
-      en: "Coastal Villa in Caesarea",
-      he: "וילה חופית בקיסריה",
-      ar: "فيلا ساحلية في قيسارية",
-    },
-    description: {
-      en: "A stunning coastal villa that embraces its seaside setting. The design captures the essence of Mediterranean living with airy spaces, natural stone, and a palette inspired by sea and sand.",
-      he: "וילה חופית מרהיבה שמחבקת את סביבתה הימית. העיצוב לוכד את מהות החיים הים-תיכוניים עם חללים אוורירים, אבן טבעית ופלטה בהשראת ים וחול.",
-      ar: "فيلا ساحلية مذهلة تحتضن موقعها البحري. يلتقط التصميم جوهر الحياة المتوسطية مع مساحات جيدة التهوية وحجر طبيعي.",
-    },
-    scope: {
-      en: "Full design, landscape coordination, custom millwork",
-      he: "עיצוב מלא, תיאום נוף, נגרות מותאמת אישית",
-      ar: "تصميم كامل، تنسيق المناظر الطبيعية، نجارة مخصصة",
-    },
-    thumbnail: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=1200&q=80",
-    ],
+    thumbnail: image("kiosk", 4),
+    images: gallery("kiosk", 14, [3, 4, 5, 9]),
     featured: true,
   },
   {
-    slug: "urban-restaurant-concept",
-    category: "hospitality",
-    year: "2022",
-    location: { en: "Jerusalem, Israel", he: "ירושלים, ישראל", ar: "القدس، إسرائيل" },
-    area: "180 m²",
-    duration: { en: "7 months", he: "7 חודשים", ar: "7 أشهر" },
+    slug: "apt-100",
+    category: "residential",
+    location: { en: "Israel", he: "ישראל", ar: "إسرائيل" },
     title: {
-      en: "Urban Restaurant Concept",
-      he: "קונספט מסעדה אורבני",
-      ar: "مفهوم مطعم حضري",
+      en: "Apt. 100",
+      he: "דירה 100",
+      ar: "شقة 100",
     },
     description: {
-      en: "An intimate restaurant that tells the story of Jerusalem through design. Local materials, artisan craftsmanship, and a warm atmosphere create a dining experience that connects guests to the city's rich heritage.",
-      he: "מסעדה אינטימית שמספרת את סיפורה של ירושלים דרך עיצוב. חומרים מקומיים, אומנות אומנים ואווירה חמה יוצרים חוויית אוכל שמחברת את האורחים למורשת העשירה של העיר.",
-      ar: "مطعم حميم يروي قصة القدس من خلال التصميم. المواد المحلية والحرفية والأجواء الدافئة تخلق تجربة طعام فريدة.",
+      en: "A serene apartment in a palette of sand, cream and pale oak. Sheer curtains diffuse the light across a deep modular sofa, a travertine-look kitchen island and floor-to-ceiling timber cabinetry that hides the everyday. Décor is kept to a minimum, a dried branch here and a ceramic vase there, so texture does the talking. The guest bath continues the mood with a full-height stone wall and a softly backlit oval mirror.",
+      he: "דירה שלווה בפלטה של חול, שמנת ואלון בהיר. וילונות שקופים מפזרים את האור על פני ספה מודולרית עמוקה, אי מטבח בדמוי טרוורטין וארונות עץ מהרצפה ועד התקרה שמסתירים את היומיום. העיצוב נשמר מינימלי, ענף יבש כאן ואגרטל קרמיקה שם, כך שהמרקמים הם שמדברים. חדר הרחצה לאורחים ממשיך את האווירה עם קיר אבן לכל הגובה ומראה אובלית עם תאורה עדינה.",
+      ar: "شقة هادئة بلوحة ألوان من الرملي والكريمي والبلوط الفاتح. تنشر الستائر الشفافة الضوء على أريكة معيارية عميقة وجزيرة مطبخ تحاكي الترافرتين وخزائن خشبية من الأرض حتى السقف تخفي تفاصيل الحياة اليومية. أُبقي الديكور في حدّه الأدنى، غصن جاف هنا ومزهرية خزفية هناك، لتتحدث الخامات عن نفسها. ويواصل حمام الضيوف الأجواء ذاتها بجدار حجري بكامل الارتفاع ومرآة بيضاوية بإضاءة خلفية ناعمة.",
     },
     scope: {
-      en: "Concept design, interior design, branding integration",
-      he: "עיצוב קונספט, עיצוב פנים, שילוב מיתוג",
-      ar: "تصميم المفهوم، تصميم داخلي، تكامل العلامة التجارية",
+      en: "Interior design, kitchen design, furniture selection, styling",
+      he: "עיצוב פנים, תכנון מטבח, בחירת ריהוט, סטיילינג",
+      ar: "تصميم داخلي، تصميم المطبخ، اختيار الأثاث، تنسيق",
     },
-    thumbnail: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80",
-      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&q=80",
-      "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=1200&q=80",
-      "https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=1200&q=80",
-    ],
+    thumbnail: image("apt-100", 3),
+    images: gallery("apt-100", 7, [3, 4, 7]),
     featured: false,
   },
 ];

@@ -57,8 +57,8 @@ export default function Header({ locale, dict }: HeaderProps) {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-blue-600/95 backdrop-blur-md shadow-sm"
-            : "bg-blue-600"
+            ? "bg-[var(--color-primary)]/95 backdrop-blur-md shadow-md"
+            : "bg-[var(--color-primary)]"
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
@@ -81,7 +81,7 @@ export default function Header({ locale, dict }: HeaderProps) {
                   className={`relative text-sm tracking-[0.1em] uppercase transition-colors duration-300 ${
                     isActive(link.href)
                       ? "text-white"
-                      : "text-white/70 hover:text-white"
+                      : "text-white/65 hover:text-white"
                   }`}
                   style={{ fontFamily: "var(--font-body)" }}
                 >
@@ -101,6 +101,7 @@ export default function Header({ locale, dict }: HeaderProps) {
                 onClick={() => setMenuOpen(!menuOpen)}
                 className="relative w-8 h-8 flex items-center justify-center z-50"
                 aria-label="Toggle menu"
+                aria-expanded={menuOpen}
               >
                 <span className={`block absolute w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? "rotate-45" : "-translate-y-2"}`} />
                 <span className={`block absolute w-6 h-[1.5px] bg-white transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
