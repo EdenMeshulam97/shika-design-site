@@ -20,18 +20,19 @@ export default async function AboutPage({ params }: PageProps) {
 
   return (
     <>
-      {/* Hero: the photo is pre-cropped around the duo (about-hero.jpg). The height is tied to the
-          width on desktop, and the focal point (24% 64%) keeps both of them fully in frame from phone
-          to wide screens. It starts below the fixed header (mt-20) so the header never covers their heads. */}
-      <section className="relative mt-20 h-[70vh] min-h-[420px] md:h-[min(60vw,calc(100vh-5rem))] overflow-hidden">
+      {/* Hero: on desktop the height is tied only to the width (38vw), so the full-width photo always shows
+          the duo from above their heads to below their feet, whatever the window height. The focal point
+          (20% 71%) keeps them in frame; on phones the photo is height-fit and shifted toward them.
+          It starts below the fixed header (mt-20) so the header never covers them. */}
+      <section className="relative mt-20 h-[60vh] min-h-[420px] md:h-[38vw] md:min-h-0 overflow-hidden">
         <Image
-          src="/images/team/shika-duo/about-hero.jpg"
+          src="/images/team/shika-duo/11.jpg"
           alt="Karoiline & Shiraz"
           fill
           priority
           sizes="100vw"
           className="object-cover"
-          style={{ objectPosition: "24% 64%" }}
+          style={{ objectPosition: "20% 71%" }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent md:bg-gradient-to-l md:from-black/45 md:via-black/10 md:to-transparent" />
         {/* Title sits on the empty side of the photo (bottom on phones, right on desktop) so it never covers them */}
