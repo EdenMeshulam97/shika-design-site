@@ -29,6 +29,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
   const [heroWidth, heroHeight] = imageSizes[project.images[0] as keyof typeof imageSizes] ?? [0, 0];
   const heroIsLandscape = heroWidth > heroHeight;
+  const heroMeta = [project.location?.[locale as Locale], project.year].filter(Boolean).join(" — ");
 
   const currentIndex = projects.findIndex((p) => p.slug === slug);
   const nextProject = projects[(currentIndex + 1) % projects.length];
@@ -68,12 +69,11 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 {project.title[locale as Locale]}
               </h1>
             </FadeIn>
-            <FadeIn delay={0.2}>
-              <p className="text-white/70 text-sm">
-                {project.location[locale as Locale]}
-                {project.year && <> &mdash; {project.year}</>}
-              </p>
-            </FadeIn>
+            {heroMeta && (
+              <FadeIn delay={0.2}>
+                <p className="text-white/70 text-sm">{heroMeta}</p>
+              </FadeIn>
+            )}
           </div>
         </div>
       </section>
@@ -115,7 +115,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 <div className="space-y-6 lg:sticky lg:top-28">
                   {[
                     { label: dict.projectDetail.scope, value: project.scope[locale as Locale] },
-                    { label: dict.projectDetail.location, value: project.location[locale as Locale] },
+                    { label: dict.projectDetail.location, value: project.location?.[locale as Locale] },
                     { label: dict.projectDetail.area, value: project.area },
                     { label: dict.projectDetail.year, value: project.year },
                     { label: dict.projectDetail.duration, value: project.duration?.[locale as Locale] },

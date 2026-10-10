@@ -4,7 +4,7 @@ export interface Project {
   slug: string;
   category: "residential" | "commercial" | "hospitality";
   year?: string;
-  location: {
+  location?: {
     en: string;
     he: string;
     ar: string;
@@ -93,6 +93,28 @@ export const projects: Project[] = [
     thumbnail: image("ma-project", 2),
     images: gallery("ma-project", [10, 2, 14, 5, 15, 22]),
     featured: true,
+  },
+  {
+    slug: "bridal-salon",
+    category: "commercial",
+    title: {
+      en: "Veloura Bridal Salon",
+      he: "סלון הכלות Veloura",
+      ar: "صالون Veloura للعرائس",
+    },
+    description: {
+      en: "A bridal salon designed as one serene, softly lit world. A textured plaster reception desk, washed in up-light, sits beneath a cascade of white pendant tubes and is framed by arched black-glass openings bearing the Veloura name. The gown showroom flows around a central column, while sheer floor-to-ceiling curtains turn the arched windows and a circular fitting room into soft, glowing backdrops. Beyond the dresses, the salon includes a hair and makeup suite with arched backlit mirrors and a wash station set into a plaster niche, plus a treatment clinic marked by a halo-lit sign, all in the same palette of cream, stone and olive green.",
+      he: "סלון כלות שעוצב כעולם אחד שליו ומואר ברכות. דלפק קבלה מטיח מרקמי, מואר מלמטה, ניצב מתחת למפל של צינורות תאורה לבנים וממוסגר בפתחים מקושתים מזכוכית שחורה הנושאים את השם Veloura. אולם השמלות זורם סביב עמוד מרכזי, ווילונות שקופים מהרצפה ועד התקרה הופכים את החלונות המקושתים ואת תא המדידה העגול לרקעים רכים וזוהרים. מעבר לשמלות, הסלון כולל עמדות שיער ואיפור עם מראות מקושתות מוארות ועמדת חפיפה בתוך נישת טיח, וחדר טיפולים המסומן בשלט עם הילת אור, כולם באותה פלטה של שמנת, אבן וירוק זית.",
+      ar: "صالون عرائس صُمّم كعالم واحد هادئ بإضاءة ناعمة. يقف مكتب استقبال من الجص المحبّب، مضاء من الأسفل، تحت شلال من أنابيب الإضاءة البيضاء، وتؤطّره فتحات مقوّسة من الزجاج الأسود تحمل اسم Veloura. تنساب صالة الفساتين حول عمود مركزي، وتحوّل الستائر الشفافة الممتدة من الأرض حتى السقف النوافذَ المقوّسة وغرفة القياس الدائرية إلى خلفيات ناعمة متوهجة. وإلى جانب الفساتين، يضم الصالون ركناً لتصفيف الشعر والمكياج بمرايا مقوّسة مضاءة ومغسلة شعر داخل كوّة من الجص، وغرفة علاجات تميّزها لافتة بهالة من الضوء، وكلها بلوحة الألوان ذاتها من الكريمي والحجري والأخضر الزيتوني.",
+    },
+    scope: {
+      en: "Concept design, retail and salon interior design, custom reception desk, lighting design",
+      he: "עיצוב קונספט, עיצוב פנים לחנות ולסלון, דלפק קבלה בעיצוב אישי, עיצוב תאורה",
+      ar: "تصميم المفهوم، تصميم داخلي للمتجر والصالون، مكتب استقبال مخصص، تصميم إضاءة",
+    },
+    thumbnail: image("bridal-salon", 16),
+    images: gallery("bridal-salon", [10, 16, 13, 21, 22, 5, 2]),
+    featured: false,
   },
   {
     slug: "joker-burger",

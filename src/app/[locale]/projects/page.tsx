@@ -120,7 +120,7 @@ export default function ProjectsPage() {
                     className="text-xs tracking-[0.1em] uppercase"
                     style={{ color: "var(--color-text-muted)" }}
                   >
-                    {dict.projects.categories[project.category]} &mdash; {project.location[locale as Locale]}
+                    {[dict.projects.categories[project.category], project.location?.[locale as Locale]].filter(Boolean).join(" — ")}
                   </p>
                 </Link>
               </FadeIn>

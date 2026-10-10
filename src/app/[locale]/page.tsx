@@ -177,8 +177,7 @@ export default async function HomePage({ params }: PageProps) {
                     className="text-sm tracking-[0.1em] uppercase"
                     style={{ color: "var(--color-text-muted)" }}
                   >
-                    {project.location[locale as Locale]}
-                    {project.year && <> &mdash; {project.year}</>}
+                    {[project.location?.[locale as Locale], project.year].filter(Boolean).join(" — ")}
                   </p>
                 </Link>
               </FadeIn>
