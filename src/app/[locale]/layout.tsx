@@ -9,6 +9,7 @@ import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import AccessibilityWidget from "@/components/a11y/AccessibilityWidget";
 import { a11yBootScript } from "@/lib/a11y/settings";
+import ContextMenuGuard from "@/components/ui/ContextMenuGuard";
 
 // Fonts are downloaded at build time and served from this site (no request to Google, no render-blocking stylesheet).
 // The variables are wired into --font-heading/--font-body in globals.css and ThemeProvider.
@@ -65,6 +66,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
           <Footer locale={locale as Locale} dict={dict} />
           <AccessibilityWidget locale={locale as Locale} dict={dict.a11y} />
         </ThemeProvider>
+        <ContextMenuGuard />
       </body>
     </html>
   );

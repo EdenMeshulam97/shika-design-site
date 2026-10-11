@@ -70,6 +70,10 @@
   img {
     max-width: 100%;
     height: auto;
+    /* No "Save image" sheet on iOS long-press, no drag ghost (see ContextMenuGuard) */
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
+    user-select: none;
   }
 
   /* RTL Support */
